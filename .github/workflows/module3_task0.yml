@@ -17,4 +17,4 @@ jobs:
         
       - name: Execute Makefile
         run: make help
-        working-directory: holbertonschool-validation/module3_task0/Makefile
+        working-directory: module3_task0
