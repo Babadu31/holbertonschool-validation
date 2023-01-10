@@ -51,6 +51,21 @@ Use the [installation instructions in the Hugo documentation](https://gohugo.io/
 
 ### Build and Install the Binaries from Source (Advanced Install)
 
+### Prerequisites
+
+
+### Lifecycle
+
+build: dfhdjfhjdfhdjfhd
+
+clean: dfssfsffdsf
+
+help: sdffsdffsdff
+
+post: dfsdfsgsegs
+
+
+
 #### Prerequisite Tools
 
 * [Git](https://git-scm.com/)
