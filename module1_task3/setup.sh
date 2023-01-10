@@ -1,6 +1,4 @@
-apt update
-apt install hugo
-apt install make
+#!/usr/bin/env bash
+docker run --rm --tty --interactive --volume=$(pwd):/app --workdir=/app ubuntu:18.04 /bin/bash
+apt-get update && apt-get install -y hugo make
 make build
-exit 255
-echo "recipe for target 'build' failed" >&2
