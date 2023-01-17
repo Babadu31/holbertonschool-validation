@@ -1,0 +1,15 @@
+build:
+	go build -o awesome-api
+
+run: build
+	./awesome-api >./awesome.log 2>&1 &
+
+stop:
+	kill $(pgrep awesome-api)
+
+clean: stop
+	rm -f awesome-api awesome.log
+
+test:
+	curl http://localhost:9999
+	curl http://localhost:9999/health
