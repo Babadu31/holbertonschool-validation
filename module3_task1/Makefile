@@ -3,7 +3,7 @@ Publish=hugo
 SHELLCHECK=shellcheck
 
 build: ## Builds a new website
-	$sudo(Publish)
+	$(Publish)
 
 clean: ## Remove all files from folder dist
 	rm -r dist/*
