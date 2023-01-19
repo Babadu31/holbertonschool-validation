@@ -1,0 +1,36 @@
+---
+name: module3_task2
+"on":
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions: read-all
+
+jobs:
+  builds:
+    name: job1
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: install hugo
+        run: |
+          cd module3_task3 && ./setup.sh
+      - name: install markdown
+        run: npm install -g markdownlint-cli
+
+      - name: Validate Makefile help
+        run: |
+          cd module3_task2
+          make lint
+          make build
+          make package
+          make unit-tests
+          make integration-tests
+          make validate
