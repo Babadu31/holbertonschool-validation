@@ -21,7 +21,7 @@ jobs:
           node-version: 16
       - name: install hugo
         run: |
-          cd module3_task3 && ./setup.sh
+          cd module3_task2 && ./setup.sh
       - name: install markdown
         run: npm install -g markdownlint-cli
 
