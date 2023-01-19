@@ -15,9 +15,14 @@ package: ## zip website
 	@hugo
 	@zip awesome-website.zip ./dist
 
-lint: ## lint with markdown
-	@markdownlint README.md
-	@markdownlint DEPLOY.md
+lint: ## setup check
+	markdownlint README.md
+	markdownlint DEPLOY.md
+	$(SHELLCHECK) setup.sh >/dev/null 2>&1 || "Lint Failed"
+
+markdownlint: ## update lint
+	markdownlint README.md
+	markdownlint DEPLOY.md
 
 unit-tests: ## test file
 	@ls
