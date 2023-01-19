@@ -16,12 +16,11 @@ package: ## zip website
 	@zip awesome-website.zip ./dist
 
 lint: ## setup check
-	@markdownlint README.md
-	@markdownlint DEPLOY.md
+	@markdownlint "*.md"
 
 markdownlint: ## update lint
-	markdownlint README.md
-	markdownlint DEPLOY.md
+	@markdownlint README.md
+	@markdownlint DEPLOY.md
 
 unit-tests: ## test file
 	@ls
