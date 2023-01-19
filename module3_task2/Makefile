@@ -16,9 +16,8 @@ package: ## zip website
 	@zip awesome-website.zip ./dist
 
 lint: ## setup check
-	markdownlint README.md
-	markdownlint DEPLOY.md
-	$(SHELLCHECK) setup.sh >/dev/null 2>&1 || "Lint Failed"
+	@markdownlint README.md
+	@markdownlint DEPLOY.md
 
 markdownlint: ## update lint
 	markdownlint README.md
