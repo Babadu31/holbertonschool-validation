@@ -1,0 +1,53 @@
+---
+env:
+  GH_TOKEN: ${{ github.token }}
+name: module3_task3
+"on":
+  push:
+    tags: "1.0.0"
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions: read-all
+
+jobs:
+  builds:
+    permissions: write-all
+    name: job1
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: install hugo
+        run: cd module3_task2 && ./setup.sh
+      - name: install markdown
+        run: npm install -g markdownlint-cli
+      - name: Validate Makefile help
+        run: |
+          cd module3_task2
+          make lint
+          make build
+          make package
+          make unit-tests
+          make integration-tests
+          make validate
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/1.0.0')
+        with:
+          files: |
+            awesome-website.zip
+            DEPLOY.md
+          body: |
+            # First project
+            What is in the archive and how to unarchive it? zip
+            What are the commands to start and stop the application? tag
+            How to customize where the application logs are written?
+            How to verify that the application is running (healthcheck)?
+      - run: gh release create v1.0.0 --title "v1.0.0" \
+          --notes DEPLOY.md 2>/dev/null || echo "OK"
