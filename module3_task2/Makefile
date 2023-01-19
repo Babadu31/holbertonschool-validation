@@ -1,5 +1,5 @@
 build:
-	@hugo --destination ./dist
+	@hugo
 
 clean:
 	rm -rf dist/*
