@@ -1,0 +1,28 @@
+---
+env:
+  GH_TOKEN: ${{ github.token }}
+
+name: release_drafter
+"on":
+  push:
+    tags: "1.0.1"
+    branches:
+      - main
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - main
+
+jobs:
+  update_release_draft:
+    permissions: write-all
+    name: release_drafter_job
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: release drafter
+        uses: release-drafter/release-drafter@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          labels: "changelog"
+          output: changelog.md
