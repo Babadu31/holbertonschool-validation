@@ -1,21 +1,29 @@
-build:
+help: ## Show help command
+	@sed -ne '/@sed/!s/## //p' Makefile
+
+build:  ## Create Website
 	@hugo
 
-clean:
-	rm -rf dist/*
+clean:  ## Delete content of dist folder
+	@rm -rf dist/*
 
-post:
-	rm -rf content/post/$(POST_NAME).md
-	hugo new posts/$(POST_NAME).md
-	sed -i 's/title:.*/title: $(POST_TITLE)/' content/posts/$(POST_NAME).md
-	sed -i 's/draft:.*/draft: false/' content/posts/$(POST_NAME).md
+post:  ## Create a post
+	@hugo new ./content/posts/$(POST_NAME).md
+	@sed -i '/title:*/c\title: "$(POST_TITLE)"' ./content/posts/$(POST_NAME).md
 
-package:
-	hugo
-	zip -r awesome-website.zip dist/
+package: ## zip website
+	@hugo
+	@zip awesome-website.zip ./dist
 
-lint: 
-	markdownlint README.md DEPLOY.md
+lint: ## lint with markdown
+	@markdownlint README.md
+	@markdownlint DEPLOY.md
 
-help:
-	@egrep -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?# "}; {printf "\033[36m%-0s:\033[0m %s\n",$$1, $$2}'
+unit-tests: ## test file
+	@ls
+
+integration-tests: ## integrate file
+	@ls
+
+validate: ## valide file
+	@ls
